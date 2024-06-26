@@ -1,24 +1,27 @@
 import { CiTextAlignCenter } from "react-icons/ci";
 import { useState, useRef } from 'react';
 
-// eslint-disable-next-line react/prop-types
+// eslint-disable-next-line react/prop-types, no-unused-vars
 export const Form = ({dateM, tasks, setTasks}) => {
 
     const [valInput, setValInput]= useState('');
     const idRef = useRef(0)
-   
+
     const handlerSubmit = (e) => {
         e.preventDefault();
         idRef.current++;
+
         const newTask = {
             id: idRef.current,
             date: dateM,
-            name: valInput,
+            tasks: valInput,
             done: false
         }
-        console.log(newTask);
+        
         console.log("tarea creada");
-        setTasks([...tasks, newTask]);
+    
+        setTasks(prevTasks => [...prevTasks, newTask]);
+    
         setValInput('');
     }       
     

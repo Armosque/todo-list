@@ -8,15 +8,19 @@ import {useState} from 'react'
 import {Week} from './components/Week'
 import {Month} from './components/Month'
 import {Year} from './components/Year'
-import "./App.css"
+import {useEffect} from 'react'
+
 
 function App() {
+  const data = JSON.parse(localStorage.getItem("tasks"))
 
   const [tab, setTab] = useState("day")
   const [dateM, setDateM] = useState(new Date())
-  const [tasks, setTasks] = useState([])
+  const [tasks, setTasks] = useState(data || [])
   
-  console.log(tasks);
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks))
+  }, [tasks]);
   return (
     <>
       
@@ -26,7 +30,7 @@ function App() {
           <Header tab={tab} setTab={setTab}/>
           {tab === "day" && <>
               <Day dateM={dateM} setDateM={setDateM} /> 
-              <Form dateM={dateM} tasks ={tasks} setTasks={setTasks}/>
+              <Form dateM={dateM} tasks={tasks} setTasks={setTasks}/>
               <ListTasks dateM ={dateM} tasks ={tasks} setTasks={setTasks}/>
             </>
           }
