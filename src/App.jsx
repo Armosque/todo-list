@@ -12,6 +12,7 @@ import {useEffect} from 'react'
 
 
 function App() {
+  
   const data = JSON.parse(localStorage.getItem("tasks"))
 
   const [tab, setTab] = useState("day")
@@ -21,22 +22,29 @@ function App() {
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks))
   }, [tasks]);
+
+  const resetApp = () => {
+    localStorage.clear(); // Limpia todos los datos de localStorage
+    window.location.reload(); // Recarga la página para reiniciar la aplicación
+    setTab("reset")
+    
+  };
   return (
     <>
       
       <main>
-        <h1 className="text-4xl font-bold">Todo List</h1>
-        <div className="bg-gray03 text-white rounded max-w-[600px] m-auto">
-          <Header tab={tab} setTab={setTab}/>
+        
+        <div className="bg-gray03 text-white rounded max-w-[60%] m-auto">
+          <Header tab={tab} setTab={setTab} resetApp={resetApp}/>
           {tab === "day" && <>
               <Day dateM={dateM} setDateM={setDateM} /> 
               <Form dateM={dateM} tasks={tasks} setTasks={setTasks}/>
               <ListTasks dateM ={dateM} tasks ={tasks} setTasks={setTasks}/>
             </>
           }
-        {tab === "week" && <Week/>}
-        {tab === "month" && <Month/>}
-        {tab === "year" && <Year/>}
+        {tab === "week" && <Week tasks={tasks} />}
+        {tab === "month" && <Month tasks={tasks}/>}
+        {tab === "year" && <Year tasks={tasks}/>}
         </div>
 
       </main>

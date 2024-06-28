@@ -33,7 +33,7 @@ export const Day = ({dateM, setDateM}) => {
                 <FaAngleLeft  size={20}/>
             </p>
             <div className="w-[150px]">
-                <h4 className="text-3xl font-medium">{getNameDay(dateM)}</h4>
+                <h4 className="text-xl md:text-3xl font-medium">{getNameDay(dateM)}</h4>
                 <p className="text-gray02"> {getDate(dateM)}</p>
             </div>
             <p className='cursor-pointer'

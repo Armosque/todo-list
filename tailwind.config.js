@@ -14,7 +14,8 @@ export default {
         gray03: "#3D434B",
         gray04: "#343A3F",
         gray05: "#0000003b",
-        gray06: "#484F58"
+        gray06: "#484F58",
+        elec01: "#00D1FF",
       }
     },
   },

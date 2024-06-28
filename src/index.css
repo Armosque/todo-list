@@ -3,6 +3,6 @@
 @tailwind utilities;
 
 .current{
-    @apply font-medium text-white border-b-2 border-red02
+@apply font-medium text-white border-b-2 border-red02
     
 }
